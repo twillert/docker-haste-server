@@ -1,4 +1,4 @@
-FROM centos:7
+FROM scratch
 MAINTAINER Thomas Willert <thomas@willert.dk>
 
 USER root
