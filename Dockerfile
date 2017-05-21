@@ -1,11 +1,12 @@
-FROM scratch
+FROM centos:latest
 MAINTAINER Thomas Willert <thomas@willert.dk>
 
 USER root
-RUN yum clean all
-RUN rpm --rebuilddb
-RUN yum update -y
-RUN yum install -y yum-plugin-ovl
-RUN yum install -y epel-release
+RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 RUN yum install -y npm
+ADD haste-server /haste-server
+WORKDIR /haste-server
+EXPOSE 7777
+RUN npm install
+CMD npm start
 
